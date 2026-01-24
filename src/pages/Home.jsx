@@ -1,6 +1,7 @@
 import { Hello } from "../components/Hello";
 import { ProfileCard } from "../components/ProfileCard";
 import { SampleButton } from "../components/SampleButton";
+import { TodoList } from "../components/TodoList";
 
 export function Home() {
     return (
@@ -9,6 +10,10 @@ export function Home() {
             <Hello/>
             <ProfileCard name="テスト太郎" job="バックエンドエンジニア" />
             <SampleButton />
+            <TodoList todos={[
+                { id: 1, title: '買い物' },
+                { id: 2, title: 'プログラミング学習' },
+            ]} />
         </main>
     )
 }
