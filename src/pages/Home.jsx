@@ -1,6 +1,6 @@
-import { Counter } from "../components/Counter";
 import { Hello } from "../components/Hello";
 import { ProfileCard } from "../components/ProfileCard";
+import { SampleButton } from "../components/SampleButton";
 
 export function Home() {
     return (
@@ -8,7 +8,7 @@ export function Home() {
             <h1>関数コンポーネントの練習</h1>
             <Hello/>
             <ProfileCard name="テスト太郎" job="バックエンドエンジニア" />
-            <Counter />
+            <SampleButton />
         </main>
     )
 }
