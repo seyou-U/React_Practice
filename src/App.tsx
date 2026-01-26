@@ -1,6 +1,6 @@
 import './App.css'
 import { ErrorBoundary } from "./pages/ErrorBoundary";
-import { Home } from './pages/Home'
+import UsersPage  from './pages/users/index'
 import { Header } from './Header';
 import { Footer } from './Footer';
 
@@ -14,11 +14,9 @@ function App() {
   return (
     <div>
       <Header />
-
-      <ErrorBoundary>
-        <Crashy />
-      </ErrorBoundary>
-
+        <ErrorBoundary>
+          <UsersPage />
+        </ErrorBoundary>
       <Footer />
     </div>
   )
