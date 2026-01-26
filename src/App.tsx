@@ -1,6 +1,6 @@
 import './App.css'
 import { ErrorBoundary } from "./pages/ErrorBoundary";
-import UsersPage  from './pages/users/index'
+import {UserForm}  from './pages/users/form'
 import { Header } from './Header';
 import { Footer } from './Footer';
 
@@ -15,7 +15,7 @@ function App() {
     <div>
       <Header />
         <ErrorBoundary>
-          <UsersPage />
+          <UserForm />
         </ErrorBoundary>
       <Footer />
     </div>
