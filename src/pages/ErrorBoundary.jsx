@@ -1,6 +1,7 @@
 import React from "react";
 
 export class ErrorBoundary extends React.Component {
+    // コンポーネントが作成されたタイミングで初期設定をする
     constructor(props) {
         super(props);
         this.state = { error: null };
@@ -11,7 +12,7 @@ export class ErrorBoundary extends React.Component {
         return { error };
     }
 
-    // 追加でログを残したいときに使う（任意）
+    // エラーをキャッチした後に呼び出す。追加でログを残したいときに使う
     componentDidCatch(error, info) {
         console.error("ErrorBoundary caught:", error, info);
     }
