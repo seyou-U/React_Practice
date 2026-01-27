@@ -1,8 +1,8 @@
 import './App.css'
 import { ErrorBoundary } from "./pages/ErrorBoundary";
-import {UserForm}  from './pages/users/form'
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { Counter } from './components/Counter';
 
 function Crashy() {
   // throw new Error("描画中にクラッシュしました");
@@ -15,7 +15,7 @@ function App() {
     <div>
       <Header />
         <ErrorBoundary>
-          <UserForm />
+          <Counter/>
         </ErrorBoundary>
       <Footer />
     </div>
