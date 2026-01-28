@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 
+// sateは現在の状態、actionはどんな操作をしたいを表すオブジェクト
 function reducer(state, action) {
     switch (action.type) {
         case "increment":
@@ -15,6 +16,8 @@ function reducer(state, action) {
 
 export function Counter() {
     // const [count, setCount] = useState(0);
+
+    // dispatchはuseStateのset関数のようなもの
     const [state, dispatch] = useReducer(reducer, { count:0 });
 
     return (
