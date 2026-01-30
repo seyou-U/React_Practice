@@ -1,5 +1,5 @@
 import './App.css'
-import { useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import Child from './components/Child';
 import Form  from './components/Form';
 
@@ -7,10 +7,32 @@ function Crashy() {
   // throw new Error("描画中にクラッシュしました");
 }
 
+const HeavyChild = memo(function HeavyChild({ label }: { label:string}) {
+    console.log('HeavyChild : render');
+    // 重い処理がある想定
+
+    return <div>子: {label}</div>
+});
+
 // Appは親コンポーネントであり画面の設計図
 // どの部品をの順番で並べるかについて整理している
 function App() {
-    return <Form/>;
+
+    const [text, setText] = useState('');
+
+    // 今回は親(APP)は再レンダリングされるが、子(HeavyChild)はサイレンダリンングされない
+    return (
+        <>
+            <input value={text} onChange={(e) => setText(e.target.value)} />
+            <p>親の入力 : {text}</p>
+
+            <HeavyChild label='固定のラベル' />
+        </>
+    );
+
+
+
+    // return <Form/>;
     // const [count, setCount] = useState(0);
     // const [text, setText] = useState("");
 
