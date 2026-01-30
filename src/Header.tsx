@@ -1,3 +1,3 @@
 export function Header() {
-    return <h1>My React App</h1>;
+  return <h1>My React App</h1>;
 }
