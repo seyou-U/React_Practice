@@ -1,6 +1,6 @@
 import './App.css';
 // import { memo } from 'react';
-import { ContactForm } from './components/ContactForm';
+import { ProductsPage } from './pages/ProductsPage';
 
 // function Crashy() {
 //   // throw new Error("描画中にクラッシュしました");
@@ -16,7 +16,8 @@ import { ContactForm } from './components/ContactForm';
 // Appは親コンポーネントであり画面の設計図
 // どの部品をの順番で並べるかについて整理している
 function App() {
-  return <ContactForm />;
+  return <ProductsPage />;
+  // return <ContactForm />;
 
   // const [text, setText] = useState('');
 
