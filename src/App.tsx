@@ -1,6 +1,9 @@
 import './App.css';
 // import { memo } from 'react';
-import { ProductsPage } from './pages/ProductsPage';
+import { FavoritesPage } from './pages/products/FavoritesPage';
+import { ProductsPage } from './pages/products/ProductsPage';
+import { FavoritesProvider } from './components/FavoritesProvider';
+import { useState } from 'react';
 
 // function Crashy() {
 //   // throw new Error("描画中にクラッシュしました");
@@ -16,7 +19,17 @@ import { ProductsPage } from './pages/ProductsPage';
 // Appは親コンポーネントであり画面の設計図
 // どの部品をの順番で並べるかについて整理している
 function App() {
-  return <ProductsPage />;
+  const [page, setPage] = useState<"products" | "favorites">("products");
+  return (
+    <FavoritesProvider>
+      <div style={{ padding: 16 }}>
+        <button onClick={() => setPage("products")}>商品一覧</button>
+        <button style={{ marginLeft: 8 }} onClick={() => setPage("favorites")}>お気に入り</button>
+      </div>
+
+      {page === "products" ? <ProductsPage/> : <FavoritesPage/>}
+    </FavoritesProvider>
+  );
   // return <ContactForm />;
 
   // const [text, setText] = useState('');

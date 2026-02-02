@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { PRODUCTS } from '../../data/products';
-import { SearchForm } from '../components/SearchForm/SearchForm';
-import { ProductTable } from '../components/ProductTable/ProductTable';
+import { PRODUCTS } from '../../../data/products';
+import { SearchForm } from '../../components/SearchForm/SearchForm';
+import { ProductTable } from '../../components/ProductTable/ProductTable';
 
 export function ProductsPage() {
   const [query, setQuery] = useState('');
