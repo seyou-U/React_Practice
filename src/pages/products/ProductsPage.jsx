@@ -1,35 +1,29 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useReducer, useState } from 'react';
 import { PRODUCTS } from '../../../data/products';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
+import { initialState, productsReducer } from '../../reducers/productsReducer';
+import { filterProducts } from '../../utils/filterProducts';
 
 export function ProductsPage() {
-  const [query, setQuery] = useState('');
-  const [onlyInStock, setOnlyInStock] = useState(false);
+  const [state, dispatch] = useReducer(productsReducer, initialState);
 
-  const filteredProducts = useMemo(() => {
-    const q = query.trim().toLowerCase();
-
-    // 在庫あり表示にONが入ってかつその商品が在庫なしの場合もしくは検索条件に当てはまらない場合は除外する
-    return PRODUCTS.filter(product => {
-      if (onlyInStock && !product.stocked) return false;
-      if (q && !product.name.toLowerCase().includes(q)) return false;
-      return true;
-    });
-  }, [query, onlyInStock]);
+  const filtered = useMemo(() => {
+    return filterProducts(PRODUCTS, state.query, state.onlyInStock);
+  }, [state.query, state.onlyInStock]);
 
   return (
     <div>
       <h1>商品一覧</h1>
 
       <SearchForm
-        query={query}
-        onlyInStock={onlyInStock}
-        onChangeQuery={setQuery}
-        onChangeOnlyInStock={setOnlyInStock}
+        query={state.query}
+        onlyInStock={state.onlyInStock}
+        onChangeQuery={(value) => dispatch({type: 'setQuery', value})}
+        onChangeOnlyInStock={(checked) => dispatch({type: 'toggleInStockOnly', value: checked})}
       />
 
-      <ProductTable products={filteredProducts} />
+      <ProductTable products={filtered} />
     </div>
   );
 }
