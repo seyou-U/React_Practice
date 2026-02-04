@@ -1,4 +1,4 @@
-import { useMemo, useReducer, useState } from 'react';
+import { useMemo, useReducer } from 'react';
 import { PRODUCTS } from '../../../data/products';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
@@ -19,8 +19,8 @@ export function ProductsPage() {
       <SearchForm
         query={state.query}
         onlyInStock={state.onlyInStock}
-        onChangeQuery={(value) => dispatch({type: 'setQuery', value})}
-        onChangeOnlyInStock={(checked) => dispatch({type: 'toggleInStockOnly', value: checked})}
+        onChangeQuery={value => dispatch({ type: 'setQuery', value })}
+        onChangeOnlyInStock={checked => dispatch({ type: 'toggleInStockOnly', value: checked })}
       />
 
       <ProductTable products={filtered} />
