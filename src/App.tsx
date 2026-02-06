@@ -4,6 +4,9 @@ import { FavoritesPage } from './pages/products/FavoritesPage';
 import { ProductsPage } from './pages/products/ProductsPage';
 import { FavoritesProvider } from './components/FavoritesProvider';
 import { useState } from 'react';
+// import { Button } from './components/Button/Button.jsx';
+import styled from 'styled-components';
+import { css } from '@emotion/react';
 
 // function Crashy() {
 //   // throw new Error("描画中にクラッシュしました");
@@ -15,6 +18,26 @@ import { useState } from 'react';
 
 //     return <div>子: {label}</div>
 // });
+
+// CSS-in-JS(styled-components)でスタイルを注入
+const Button = styled.button`
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: ${p => (p.$variant === 'primary' ? 'red' : 'white')};
+  color: ${p => (p.$variant === 'primary' ? 'white' : 'red')};
+  cursor: pointer;
+`;
+
+// CSS-in-JS(Emotion)でスタイルを注入
+const buttonStyle = (variant) => css`
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid ${variant === 'primary' ? '#111' : '#ccc'};
+  background: ${variant === 'primary' ? '#111' : 'white'};
+  color: ${variant === 'primary' ? 'white' : '#111'};
+  cursor: pointer;
+`;
 
 // Appは親コンポーネントであり画面の設計図
 // どの部品をの順番で並べるかについて整理している
@@ -30,6 +53,9 @@ function App() {
       </div>
 
       {page === 'products' ? <ProductsPage /> : <FavoritesPage />}
+
+      <Button $variant="primary">保存</Button>
+      <button css={buttonStyle('primary')}>保存</button>
     </FavoritesProvider>
   );
   // return <ContactForm />;
