@@ -18,7 +18,7 @@ export function ProductTable({ products }) {
           return (
             <li key={product.id}>
               {product.name} / {product.category} / ¥{product.price.toLocaleString()}{' '}
-              {product.stocked ? '' : '(在庫なし)'}
+              {product.stocked ? '(在庫あり)' : '(在庫なし)'}
               <button style={{ marginLeft: 8 }} onClick={() => toggleFavorite(product.id)}>
                 {isFavorite ? 'お気に入りから外す' : 'お気に入りに追加'}
               </button>
