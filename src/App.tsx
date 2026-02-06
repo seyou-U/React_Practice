@@ -54,8 +54,6 @@ function App() {
 
       {page === 'products' ? <ProductsPage /> : <FavoritesPage />}
 
-      <Button $variant="primary">保存</Button>
-      <button css={buttonStyle('primary')}>保存</button>
     </FavoritesProvider>
   );
   // return <ContactForm />;

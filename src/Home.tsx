@@ -1,8 +1,8 @@
-import { Counter } from '../components/Counter';
-import { Hello } from '../components/Hello';
-import { ProfileCard } from '../components/ProfileCard';
-import { SampleButton } from '../components/SampleButton';
-import { TodoList } from '../components/TodoList';
+import { Counter } from './components/Counter';
+import { Hello } from './components/Hello';
+import { ProfileCard } from './components/ProfileCard';
+import { SampleButton } from './components/SampleButton';
+import { TodoList } from './components/TodoList';
 
 export function Home() {
   return (
