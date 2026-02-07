@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import { SearchForm } from '../../components/SearchForm/SearchForm';
+import { fetchProducts } from '../../api/products';
 import { ProductTable } from '../../components/ProductTable/ProductTable';
-import { useProducts } from '../../hooks/useProducts';
+import { SearchForm } from '../../components/SearchForm/SearchForm';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 export function ProductsPage() {
+  // コメントアウトしている箇所は学習用として記録しているためポートフォリオの実装などでは削除する
+
   // const [state, dispatch] = useReducer(productsReducer, initialState);
 
   // const filtered = useMemo(() => {
@@ -13,22 +16,48 @@ export function ProductsPage() {
   const [query, setQuery] = useState('');
   const [onlyInStock, setOnlyInStock] = useState(false);
 
-  const { data = [], status, error } = useProducts({ q: query, onlyInStock });
+  // const { data = [], status, error } = useProducts({ q: query, onlyInStock });
+
+  const {
+    data = [],
+    isPending,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['products', { q: query, onlyInStock }],
+    queryFn: ({ signal }) => fetchProducts({ q: query, onlyInStock, signal }),
+    staleTime: 30_000,
+  });
+
+  if (isPending) {
+    return (
+      <div>
+        <h1>商品一覧</h1>
+        <p>読み込み中...</p>
+      </div>
+    );
+  } else if (isError) {
+    return (
+      <div>
+        <h1>商品一覧</h1>
+        <p>エラー: {String(error.message)}</p>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h1>商品一覧</h1>
-
       <SearchForm
         query={query}
         onlyInStock={onlyInStock}
         onChangeQuery={setQuery}
         onChangeOnlyInStock={setOnlyInStock}
       />
-
-      {status === 'loading' && <p>読み込み中...</p>}
+      <ProductTable products={data} />;
+      {/* {status === 'loading' && <p>読み込み中...</p>}
       {status === 'error' && <p>エラー : {error.message}</p>}
-      {status === 'success' && <ProductTable products={data} />}
+      {status === 'success' && <ProductTable products={data} />} */}
     </div>
   );
 }
