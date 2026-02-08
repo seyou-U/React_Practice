@@ -8,6 +8,7 @@ export function ProductCreateForm() {
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [stocked, setStocked] = useState(true);
+  const [formErrors, setFormErrors] = useState({});
 
   const queryClient = useQueryClient();
 
@@ -24,16 +25,26 @@ export function ProductCreateForm() {
     },
   });
 
-  // Number.isFiniteでは値が有限な数値かどうかを判定している → 文字列だとfalseになる
-  const priceValue = Number(price);
-  const canSubmit =
+    const priceValue = Number(price);
+    const canSubmit =
     name.trim() && category.trim() && Number.isFinite(priceValue) && priceValue >= 0;
 
   return (
     <form
       onSubmit={e => {
         e.preventDefault();
-        if (!name.trim() || !category.trim() || !price) return;
+        const errors = {};
+
+        if (!name.trim()) errors.name = '商品名は必須です';
+        if (!category.trim()) errors.category = 'カテゴリは必須です';
+
+        if (!price || !Number.isFinite(priceValue) && priceValue < 0) {
+            errors.price = '価格は0以上の数値で入力してください';
+        }
+
+        setFormErrors(errors);
+        if (Object.keys(errors).length > 0) return;
+
         addProduct.mutate({
           name: name.trim(),
           category: category.trim(),
@@ -43,18 +54,22 @@ export function ProductCreateForm() {
       }}
       style={{ margin: '12px 0' }}
     >
+
+      {formErrors.name && <p style={{ color: 'red' }}>{formErrors.name}</p>}
       <input
         value={name}
         onChange={e => setName(e.target.value)}
         placeholder="商品名"
         style={{ marginRight: 8 }}
       />
+      {formErrors.category && <p style={{ color: 'red' }}>{formErrors.category}</p>}
       <input
         value={category}
         onChange={e => setCategory(e.target.value)}
         placeholder="カテゴリ"
         style={{ marginRight: 8 }}
       />
+      {formErrors.price && <p style={{ color: 'red' }}>{formErrors.price}</p>}
       <input
         type="number"
         min="0"
