@@ -9,7 +9,6 @@ export function FavoritesPage() {
 
   return (
     <>
-      <Header />
       <div style={{ padding: 16 }}>
         <h2>お気に入りページ</h2>
         <p>お気に入りの数 : {favoriteIds.length}</p>

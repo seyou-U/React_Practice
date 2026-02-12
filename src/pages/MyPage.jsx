@@ -21,7 +21,6 @@ export function Mypage() {
 
   return (
     <div style={pageStyle}>
-      <Header/>
       <h1>ログイン完了</h1>
       <section style={cardStyle}>
         <h2>ユーザー情報</h2>
