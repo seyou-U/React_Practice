@@ -1,7 +1,7 @@
 const TOKEN_KEY = 'sanctum_pat';
 
 export function getToken() {
-  return localStorage.getToken(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 export function setToken(token) {

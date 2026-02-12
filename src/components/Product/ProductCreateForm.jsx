@@ -25,8 +25,8 @@ export function ProductCreateForm() {
     },
   });
 
-    const priceValue = Number(price);
-    const canSubmit =
+  const priceValue = Number(price);
+  const canSubmit =
     name.trim() && category.trim() && Number.isFinite(priceValue) && priceValue >= 0;
 
   return (
@@ -38,8 +38,8 @@ export function ProductCreateForm() {
         if (!name.trim()) errors.name = '商品名は必須です';
         if (!category.trim()) errors.category = 'カテゴリは必須です';
 
-        if (!price || !Number.isFinite(priceValue) && priceValue < 0) {
-            errors.price = '価格は0以上の数値で入力してください';
+        if (!price || (!Number.isFinite(priceValue) && priceValue < 0)) {
+          errors.price = '価格は0以上の数値で入力してください';
         }
 
         setFormErrors(errors);
@@ -54,7 +54,6 @@ export function ProductCreateForm() {
       }}
       style={{ margin: '12px 0' }}
     >
-
       {formErrors.name && <p style={{ color: 'red' }}>{formErrors.name}</p>}
       <input
         value={name}

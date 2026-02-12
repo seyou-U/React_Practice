@@ -1,10 +1,14 @@
-// コメントアウトしている箇所については学習記録用として一時的に残している
+// コメントアウトしている箇所については学習記録用として一時的に残しており本来の実装では削除すること
 import './App.css';
 // import { memo } from 'react';
-import { FavoritesPage } from './pages/products/FavoritesPage';
-import { ProductsPage } from './pages/products/ProductsPage';
-import { FavoritesProvider } from './components/FavoritesProvider';
-import { useState } from 'react';
+// import { FavoritesPage } from './pages/products/FavoritesPage';
+// import { ProductsPage } from './pages/products/ProductsPage';
+// import { FavoritesProvider } from './components/FavoritesProvider';
+// import { useState } from 'react';
+import { useAuth } from './contexts/AuthContext';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { LoginPage } from './pages/LoginPage';
+import { Mypage } from './pages/MyPage';
 // import { Button } from './components/Button/Button.jsx';
 // import styled from 'styled-components';
 // import { css } from '@emotion/react';
@@ -40,22 +44,58 @@ import { useState } from 'react';
 //   cursor: pointer;
 // `;
 
+function RequireAuth({ children }) {
+  const { user, booting } = useAuth();
+
+  if (booting) return <div>読み込み中...</div>;
+  if (!user) return <Navigate to="/login" replace />;
+
+  return children;
+}
+
 // Appは親コンポーネントであり画面の設計図
 // どの部品をの順番で並べるかについて整理している
 function App() {
-  const [page, setPage] = useState('products');
-  return (
-    <FavoritesProvider>
-      <div style={{ padding: 16 }}>
-        <button onClick={() => setPage('products')}>商品一覧</button>
-        <button style={{ marginLeft: 8 }} onClick={() => setPage('favorites')}>
-          お気に入り
-        </button>
-      </div>
+  const { user, booting } = useAuth();
+  // const [page, setPage] = useState('products');
 
-      {page === 'products' ? <ProductsPage /> : <FavoritesPage />}
-    </FavoritesProvider>
+  if (booting) return <div>読み込み中...</div>;
+
+  return (
+    <Routes>
+      {/* ログイン済みの場合、/meに飛ばす */}
+      <Route path="/login" element={user ? <Navigate to="/me" replace /> : <LoginPage />} />
+
+      {/* ログイン後のページ */}
+      <Route
+        path="me"
+        element={
+          <RequireAuth>
+            <Mypage />
+          </RequireAuth>
+        }
+      />
+
+      {/* ルートはログイン状態で振り分ける */}
+      <Route path="/" element={<Navigate to={user ? 'me' : 'login'} replace />} />
+
+      {/* それ以外は/に戻す */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
+
+  // return (
+  //   <FavoritesProvider>
+  //     <div style={{ padding: 16 }}>
+  //       <button onClick={() => setPage('products')}>商品一覧</button>
+  //       <button style={{ marginLeft: 8 }} onClick={() => setPage('favorites')}>
+  //         お気に入り
+  //       </button>
+  //     </div>
+
+  //     {page === 'products' ? <ProductsPage /> : <FavoritesPage />}
+  //   </FavoritesProvider>
+  // );
   // return <ContactForm />;
 
   // const [text, setText] = useState('');
