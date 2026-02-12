@@ -1,6 +1,5 @@
 import { PRODUCTS } from '../../../data/products';
 import { useFavorites } from '../../components/FavoritesProvider';
-import { Header } from '../../Header';
 
 export function FavoritesPage() {
   const { favoriteIds, toggleFavorite, clearFavorites } = useFavorites();

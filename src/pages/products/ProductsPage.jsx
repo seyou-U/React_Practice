@@ -1,5 +1,4 @@
 import { fetchProducts } from '../../api/products';
-import { Header } from '../../Header';
 import { ProductTable } from '../../components/Product/ProductTable';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { useState } from 'react';
