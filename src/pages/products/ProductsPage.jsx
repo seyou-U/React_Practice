@@ -1,4 +1,5 @@
 import { fetchProducts } from '../../api/products';
+import { Header } from '../../Header';
 import { ProductTable } from '../../components/Product/ProductTable';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { useState } from 'react';
@@ -49,6 +50,7 @@ export function ProductsPage() {
   // 追加処理進行中もしくは必須項目が埋まっていない場合は追加ボタンを押下することはできない
   return (
     <div>
+      <Header />
       <h1>商品一覧</h1>
       <SearchForm
         query={query}
