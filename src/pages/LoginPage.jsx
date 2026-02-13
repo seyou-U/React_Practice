@@ -19,7 +19,7 @@ export function LoginPage() {
   const onSubmit = async values => {
     try {
       await login(values);
-      navigate('/me', { replace: true });
+      navigate('/products', { replace: true });
     } catch (error) {
       if (error.status === 401) {
         setError('root', { message: 'メールまたはパスワードが違います' });
