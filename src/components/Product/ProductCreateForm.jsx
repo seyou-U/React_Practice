@@ -12,8 +12,6 @@ export function ProductCreateForm() {
 
   const queryClient = useQueryClient();
 
-  // useMutation: POSTアクションのAPIを実行するためのフック
-  // invalidateQueries: 更新後に一覧を再取得する
   const addProduct = useMutation({
     mutationFn: createProduct,
     onSuccess: () => {
