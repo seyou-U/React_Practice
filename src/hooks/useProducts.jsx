@@ -10,9 +10,6 @@ export function useProducts({ q, onlyInStock }) {
     // AbortControllerは何かを中断する処理の実装手段
     const controller = new AbortController();
 
-    setStatus('loading');
-    setError(null);
-
     // signal: abortで中断する処理を決める、AbortSignalのインスタンス
     fetchProducts({ q, onlyInStock, signal: controller.signal })
       .then(items => {
