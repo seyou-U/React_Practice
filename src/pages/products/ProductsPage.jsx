@@ -7,18 +7,8 @@ import { ProductCreateForm } from '../../components/Product/ProductCreateForm';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export function ProductsPage() {
-  // コメントアウトしている箇所は学習用として記録しているためポートフォリオの実装などでは削除する
-
-  // const [state, dispatch] = useReducer(productsReducer, initialState);
-
-  // const filtered = useMemo(() => {
-  //   return filterProducts(PRODUCTS, state.query, state.onlyInStock);
-  // }, [state.query, state.onlyInStock]);
-
   const [query, setQuery] = useLocalStorage('products_query', '');
   const [onlyInStock, setOnlyInStock] = useState(false);
-
-  // const { data = [], status, error } = useProducts({ q: query, onlyInStock });
 
   const {
     data = [],
@@ -60,9 +50,6 @@ export function ProductsPage() {
 
       <ProductCreateForm />
       <ProductTable products={data} />
-      {/* {status === 'loading' && <p>読み込み中...</p>}
-      {status === 'error' && <p>エラー : {error.message}</p>}
-      {status === 'success' && <ProductTable products={data} />} */}
     </div>
   );
 }
