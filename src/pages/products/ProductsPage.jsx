@@ -4,6 +4,7 @@ import { SearchForm } from '../../components/SearchForm/SearchForm';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ProductCreateForm } from '../../components/Product/ProductCreateForm';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export function ProductsPage() {
   // コメントアウトしている箇所は学習用として記録しているためポートフォリオの実装などでは削除する
@@ -14,7 +15,7 @@ export function ProductsPage() {
   //   return filterProducts(PRODUCTS, state.query, state.onlyInStock);
   // }, [state.query, state.onlyInStock]);
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useLocalStorage('products_query', '');
   const [onlyInStock, setOnlyInStock] = useState(false);
 
   // const { data = [], status, error } = useProducts({ q: query, onlyInStock });
