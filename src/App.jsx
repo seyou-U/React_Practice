@@ -1,7 +1,6 @@
 // コメントアウトしている箇所については学習記録用として一時的に残しており本来の実装では削除すること
 import './App.css';
-import { Outlet } from 'react-router-dom';
-import { Header } from './Header';
+import RootLayout from './routes/RootLayout';
 
 // function Crashy() {
 //   // throw new Error("描画中にクラッシュしました");
@@ -39,8 +38,7 @@ import { Header } from './Header';
 function App() {
 return (
   <>
-    <Header />
-    <Outlet />
+    <RootLayout />
   </>
 );
 

@@ -11,7 +11,6 @@ export function ProductTable({ products }) {
 
   return (
     <div style={{ padding: 16 }}>
-      <h2>ProductsPage（商品一覧）</h2>
       <ul style={{ marginTop: 12 }}>
         {products.map(product => {
           const isFavorite = favoriteIds.includes(product.id);

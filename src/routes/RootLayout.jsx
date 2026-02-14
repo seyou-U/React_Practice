@@ -5,11 +5,9 @@ export default function RootLayout() {
     <div style={{ padding: 16 }}>
       <header>
         <nav style={{ display: 'flex', gap: 12 }}>
-          <NavLink to="/" end>
-            Home
-          </NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/users">Users</NavLink>
+          <NavLink to="/products">商品一覧</NavLink>
+          <NavLink to="/favorites">お気に入り</NavLink>
+          <NavLink to="/me">マイページ</NavLink>
         </nav>
         <hr />
       </header>
