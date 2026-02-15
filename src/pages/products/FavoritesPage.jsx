@@ -1,8 +1,10 @@
 import { PRODUCTS } from '../../../data/products';
-import { useFavorites } from '../../components/FavoritesProvider';
+import { useFavoriteStore } from '../../stores/useFavoritesStore';
 
 export function FavoritesPage() {
-  const { favoriteIds, toggleFavorite, clearFavorites } = useFavorites();
+  const favoriteIds = useFavoriteStore((s) => s.favoriteIds);
+  const toggleFavorite = useFavoriteStore((s) => s.toggleFavorite);
+  const clearFavorites = useFavoriteStore((s) => s.clearFavorites);
 
   const favoritesProducts = PRODUCTS.filter(p => favoriteIds.includes(p.id));
 
