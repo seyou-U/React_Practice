@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+}
+
+:root.dark {
+  --bg: #111111;
+  --text: #eeeeee;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
