@@ -1,12 +1,8 @@
 import './App.css';
-import RootLayout from './routes/RootLayout';
+import { CrashDemoContainer } from './components/Crash/CrashDemoContainer';
 
 function App() {
-  return (
-    <>
-      <RootLayout />
-    </>
-  );
+  return <CrashDemoContainer />;
 }
 
 export default App;
