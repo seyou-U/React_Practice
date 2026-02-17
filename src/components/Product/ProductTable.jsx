@@ -2,8 +2,8 @@ import { useFavoriteStore } from '../../stores/useFavoritesStore';
 
 // データ加工や絞り込みは行わず、受け取った配列を表示させる
 export function ProductTable({ products }) {
-  const favoriteIds = useFavoriteStore((s) => s.favoriteIds);
-  const toggleFavorite = useFavoriteStore((s) => s.toggleFavorite);
+  const favoriteIds = useFavoriteStore(s => s.favoriteIds);
+  const toggleFavorite = useFavoriteStore(s => s.toggleFavorite);
 
   // 該当の商品が存在しない場合
   if (!products.length) {
