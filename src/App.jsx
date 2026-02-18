@@ -1,8 +1,17 @@
 import './App.css';
-import { CrashDemoContainer } from './components/Crash/CrashDemoContainer';
+import { ErrorBoundary } from 'react-error-boundary';
+import RootLayout from './routes/RootLayout';
+import { AppFallback } from './components/Fallback/AppFallback';
 
 function App() {
-  return <CrashDemoContainer />;
+  return (
+    <ErrorBoundary
+      FallbackComponent={AppFallback}
+      onError={(error, info) => console.error(error, info)}
+    >
+      <RootLayout />
+    </ErrorBoundary>
+  );
 }
 
 export default App;
