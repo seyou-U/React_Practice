@@ -1,17 +1,8 @@
 import './App.css';
-import { ErrorBoundary } from 'react-error-boundary';
-import RootLayout from './routes/RootLayout';
-import { AppFallback } from './components/Fallback/AppFallback';
+import { ProfileWithLogger } from './components/hocs/withLogger';
 
 function App() {
-  return (
-    <ErrorBoundary
-      FallbackComponent={AppFallback}
-      onError={(error, info) => console.error(error, info)}
-    >
-      <RootLayout />
-    </ErrorBoundary>
-  );
+  return <ProfileWithLogger name="Taro" />;
 }
 
 export default App;
