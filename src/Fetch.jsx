@@ -46,5 +46,5 @@ export function Fetch({ url, options, children }) {
       .catch(err => setError(err))
       .finally(() => setLoading(false));
   }, [url, options]);
-  return children({ data, loading, error, refetch});
+  return children({ data, loading, error, refetch });
 }
