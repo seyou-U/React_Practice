@@ -1,8 +1,8 @@
 import './App.css';
-import { ProfileWithLogger } from './components/hocs/withLogger';
+import RenderPropsDemo from './pages/RenderPropsDemo';
 
 function App() {
-  return <ProfileWithLogger name="Taro" />;
+  return <RenderPropsDemo/>;
 }
 
 export default App;
