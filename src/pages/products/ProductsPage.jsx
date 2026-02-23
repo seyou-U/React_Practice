@@ -5,13 +5,14 @@ import { useDeferredValue, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ProductCreateForm } from '../../components/Product/ProductCreateForm';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 
 export function ProductsPage() {
   const [query, setQuery] = useLocalStorage('products_query', '');
   const [onlyInStock, setOnlyInStock] = useState(false);
 
-  const deferredQuery = useDeferredValue(query);
-  const isSearching = query !== deferredQuery;
+  const debounceQuery = useDebouncedValue(query, 300);
+  const isSearching = query !== debounceQuery;
 
   const {
     data = [],
@@ -19,8 +20,8 @@ export function ProductsPage() {
     isError,
     error,
   } = useQuery({
-    queryKey: ['products', { q: deferredQuery, onlyInStock }],
-    queryFn: ({ signal }) => fetchProducts({ q: query, onlyInStock, signal }),
+    queryKey: ['products', { q: debounceQuery, onlyInStock }],
+    queryFn: ({ signal }) => fetchProducts({ q: debounceQuery, onlyInStock, signal }),
     staleTime: 30_000,
   });
 
