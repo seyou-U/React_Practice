@@ -13,7 +13,12 @@ export function ProductsPage() {
   const deferredQuery = useDeferredValue(query);
   const isSearching = query !== deferredQuery;
 
-  const { data = [], isPending, isError, error  } = useQuery({
+  const {
+    data = [],
+    isPending,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ['products', { q: deferredQuery, onlyInStock }],
     queryFn: ({ signal }) => fetchProducts({ q: query, onlyInStock, signal }),
     staleTime: 30_000,

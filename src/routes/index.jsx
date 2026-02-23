@@ -5,9 +5,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { productsRoutes } from './products';
 import { lazy } from 'react';
 
-const Mypage = lazy(() =>
-  import('../pages/MyPage').then((m) => ({ default: m.Mypage}))
-);
+const Mypage = lazy(() => import('../pages/MyPage').then(m => ({ default: m.Mypage })));
 
 export const router = createBrowserRouter([
   {

@@ -3,11 +3,11 @@ import { FavoritesProvider } from '../components/FavoritesProvider';
 import { RequireAuth } from './auth';
 
 const ProductsPage = lazy(() =>
-  import('../pages/products/ProductsPage').then((m) => ({ default: m.ProductsPage }))
+  import('../pages/products/ProductsPage').then(m => ({ default: m.ProductsPage }))
 );
 
 const FavoritesPage = lazy(() =>
-  import('../pages/products/FavoritesPage').then((m) => ({ default: m.FavoritesPage }))
+  import('../pages/products/FavoritesPage').then(m => ({ default: m.FavoritesPage }))
 );
 
 export const productsRoutes = [
