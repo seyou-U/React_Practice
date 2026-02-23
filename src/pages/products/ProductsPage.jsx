@@ -20,7 +20,7 @@ export function ProductsPage() {
     error,
   } = useQuery({
     queryKey: ['products', { q: deferredQuery, onlyInStock }],
-    queryFn: ({ signal }) => fetchProducts({ q: query, onlyInStock, signal }),
+    queryFn: ({ signal }) => fetchProducts({ q: deferredQuery, onlyInStock, signal }),
     staleTime: 30_000,
   });
 
