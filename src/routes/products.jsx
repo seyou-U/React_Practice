@@ -10,6 +10,10 @@ const FavoritesPage = lazy(() =>
   import('../pages/products/FavoritesPage').then(m => ({ default: m.FavoritesPage }))
 );
 
+const ProductsConcurrentPage = lazy(() =>
+  import('../pages/products/ProductsConcurrentPage').then(m => ({ default: m.ProductsConcurrentPage}))
+);
+
 export const productsRoutes = [
   {
     path: 'products',
@@ -17,6 +21,16 @@ export const productsRoutes = [
       <RequireAuth>
         <FavoritesProvider>
           <ProductsPage />
+        </FavoritesProvider>
+      </RequireAuth>
+    ),
+  },
+  {
+    path: 'products-concurrent',
+    element: (
+      <RequireAuth>
+        <FavoritesProvider>
+          <ProductsConcurrentPage />
         </FavoritesProvider>
       </RequireAuth>
     ),
