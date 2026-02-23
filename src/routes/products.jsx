@@ -1,7 +1,18 @@
+import { lazy } from 'react';
 import { FavoritesProvider } from '../components/FavoritesProvider';
-import { FavoritesPage } from '../pages/products/FavoritesPage';
-import { ProductsPage } from '../pages/products/ProductsPage';
 import { RequireAuth } from './auth';
+
+const ProductsPage = lazy(() =>
+  import('../pages/products/ProductsPage').then(m => ({ default: m.ProductsPage }))
+);
+
+const FavoritesPage = lazy(() =>
+  import('../pages/products/FavoritesPage').then(m => ({ default: m.FavoritesPage }))
+);
+
+const ProductsConcurrentPage = lazy(() =>
+  import('../pages/products/ProductsConcurrentPage').then(m => ({ default: m.ProductsConcurrentPage}))
+);
 
 export const productsRoutes = [
   {
@@ -10,6 +21,16 @@ export const productsRoutes = [
       <RequireAuth>
         <FavoritesProvider>
           <ProductsPage />
+        </FavoritesProvider>
+      </RequireAuth>
+    ),
+  },
+  {
+    path: 'products-concurrent',
+    element: (
+      <RequireAuth>
+        <FavoritesProvider>
+          <ProductsConcurrentPage />
         </FavoritesProvider>
       </RequireAuth>
     ),

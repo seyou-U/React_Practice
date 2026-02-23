@@ -1,13 +1,17 @@
 import { fetchProducts } from '../../api/products';
 import { ProductTable } from '../../components/Product/ProductTable';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { useState } from 'react';
+import { useDeferredValue, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ProductCreateForm } from '../../components/Product/ProductCreateForm';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export function ProductsPage() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useLocalStorage('products_query', '');
   const [onlyInStock, setOnlyInStock] = useState(false);
+
+  const deferredQuery = useDeferredValue(query);
+  const isSearching = query !== deferredQuery;
 
   const {
     data = [],
@@ -15,7 +19,7 @@ export function ProductsPage() {
     isError,
     error,
   } = useQuery({
-    queryKey: ['products', { q: query, onlyInStock }],
+    queryKey: ['products', { q: deferredQuery, onlyInStock }],
     queryFn: ({ signal }) => fetchProducts({ q: query, onlyInStock, signal }),
     staleTime: 30_000,
   });
@@ -46,6 +50,8 @@ export function ProductsPage() {
         onChangeQuery={setQuery}
         onChangeOnlyInStock={setOnlyInStock}
       />
+
+      {isSearching && <p style={{ marginTop: 8 }}>検索中...</p>}
 
       <ProductCreateForm />
       <ProductTable products={data} />

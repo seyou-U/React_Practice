@@ -32,8 +32,9 @@ export function LoginPage() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div>
-        <label>メール</label>
+        <label htmlFor="email">メール</label>
         <input
+          id="email"
           type="email"
           {...register('email', {
             required: 'メールは必須です',
@@ -43,8 +44,9 @@ export function LoginPage() {
       </div>
 
       <div>
-        <label>パスワード</label>
+        <label htmlFor="password">パスワード</label>
         <input
+          id="password"
           type="password"
           {...register('password', {
             required: 'パスワードは必須です',
