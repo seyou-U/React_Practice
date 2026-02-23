@@ -2,8 +2,12 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import App from '../App';
 import { RedirectIfAuthed, RequireAuth, RootRedirect } from './auth';
 import { LoginPage } from '../pages/LoginPage';
-import { Mypage } from '../pages/MyPage';
 import { productsRoutes } from './products';
+import { lazy } from 'react';
+
+const Mypage = lazy(() =>
+  import('../pages/MyPage').then((m) => ({ default: m.Mypage}))
+);
 
 export const router = createBrowserRouter([
   {
