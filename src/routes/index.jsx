@@ -4,6 +4,7 @@ import { RedirectIfAuthed, RequireAuth, RootRedirect } from './auth';
 import { LoginPage } from '../pages/LoginPage';
 import { productsRoutes } from './products';
 import { lazy } from 'react';
+import { ReactCompilerDemo } from '../pages/ReactCompilerDemo';
 
 const Mypage = lazy(() => import('../pages/MyPage').then(m => ({ default: m.Mypage })));
 
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
           </RequireAuth>
         ),
       },
+      { path: 'react-compiler', element: <ReactCompilerDemo/> },
       { path: '*', element: <Navigate to="/" replace /> },
     ],
   },
