@@ -6,6 +6,7 @@ import { StrictMode } from 'react';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './components/ThemeContext';
 import { router } from './routes';
+import { createContainer, dump, render as renderToMyRenderer } from './my-renderer';
 
 const queryClient = new QueryClient();
 
@@ -20,3 +21,18 @@ createRoot(document.getElementById('root')).render(
     </QueryClientProvider>
   </StrictMode>
 );
+
+if (import.meta.env.DEV) {
+  const container = createContainer();
+
+  renderToMyRenderer(
+    <div>
+      <h1>カスタムレンダーのテスト</h1>
+      <p>こんにちは</p>
+      <button type='button'>ボタン</button>
+    </div>,
+    container
+  );
+
+  dump(container);
+}
