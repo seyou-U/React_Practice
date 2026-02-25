@@ -29,7 +29,7 @@ if (import.meta.env.DEV) {
     <div>
       <h1>カスタムレンダーのテスト</h1>
       <p>こんにちは</p>
-      <button type='button'>ボタン</button>
+      <button type="button">ボタン</button>
     </div>,
     container
   );
