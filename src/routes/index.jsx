@@ -4,6 +4,7 @@ import { RedirectIfAuthed, RequireAuth, RootRedirect } from './auth';
 import { LoginPage } from '../pages/LoginPage';
 import { productsRoutes } from './products';
 import { lazy } from 'react';
+import { CheckJob } from '../pages/CheckJob';
 
 const Mypage = lazy(() => import('../pages/MyPage').then(m => ({ default: m.Mypage })));
 
@@ -27,6 +28,14 @@ export const router = createBrowserRouter([
         element: (
           <RequireAuth>
             <Mypage />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'check-job',
+        element: (
+          <RequireAuth>
+            <CheckJob />
           </RequireAuth>
         ),
       },
