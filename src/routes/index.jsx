@@ -5,6 +5,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { productsRoutes } from './products';
 import { lazy } from 'react';
 import { ReactCompilerDemo } from '../pages/ReactCompilerDemo';
+import { CheckJob } from '../pages/CheckJob';
 
 const Mypage = lazy(() => import('../pages/MyPage').then(m => ({ default: m.Mypage })));
 
@@ -32,6 +33,14 @@ export const router = createBrowserRouter([
         ),
       },
       { path: 'react-compiler', element: <ReactCompilerDemo/> },
+      {
+        path: 'check-job',
+        element: (
+          <RequireAuth>
+            <CheckJob />
+          </RequireAuth>
+        ),
+      },
       { path: '*', element: <Navigate to="/" replace /> },
     ],
   },
