@@ -11,7 +11,9 @@ const FavoritesPage = lazy(() =>
 );
 
 const ProductsConcurrentPage = lazy(() =>
-  import('../pages/products/ProductsConcurrentPage').then(m => ({ default: m.ProductsConcurrentPage}))
+  import('../pages/products/ProductsConcurrentPage').then(m => ({
+    default: m.ProductsConcurrentPage,
+  }))
 );
 
 export const productsRoutes = [

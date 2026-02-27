@@ -1,12 +1,17 @@
+import { getToken } from "../lib/api";
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export async function apiRequest(path, { method = 'GET', body, signal } = {}) {
   const url = `${BASE_URL}${path}`;
 
+  const token = getToken();
+
   const headers = {
     'Content-Type': 'application/json',
     // 認証が必要な場合はここに記述する
   };
+  if (token) headers.Authorization = `Bearer ${token}`;
 
   // 第二引数にparamsを取る
   const response = await fetch(url, {
