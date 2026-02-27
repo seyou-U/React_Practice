@@ -1,7 +1,7 @@
 import { fetchProducts } from '../../api/products';
 import { ProductTable } from '../../components/Product/ProductTable';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { useDeferredValue, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ProductCreateForm } from '../../components/Product/ProductCreateForm';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
