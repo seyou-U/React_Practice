@@ -5,6 +5,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { productsRoutes } from './products';
 import { lazy } from 'react';
 import { CheckJob } from '../pages/CheckJob';
+import { MemosPage } from '../pages/MemosPage';
 
 const Mypage = lazy(() => import('../pages/MyPage').then(m => ({ default: m.Mypage })));
 
@@ -23,6 +24,14 @@ export const router = createBrowserRouter([
         ),
       },
       ...productsRoutes,
+      {
+        path: 'memos',
+        element: (
+          <RequireAuth>
+            <MemosPage />
+          </RequireAuth>
+        ),
+      },
       {
         path: 'me',
         element: (
